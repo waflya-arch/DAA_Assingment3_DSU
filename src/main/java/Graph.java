@@ -15,4 +15,12 @@ public class Graph {
             this.adjacencyList.add(new ArrayList<>());
         }
     }
+
+    public void addEdge(int sourceVertex,int destinationVertex,int edgeWeight){
+        this.adjacencyList.get(sourceVertex).add(new Edge(sourceVertex,edgeWeight));
+
+        if(!isDirected){
+            this.adjacencyList.get(destinationVertex).add(new Edge(sourceVertex,edgeWeight));
+        }
+    }
 }
