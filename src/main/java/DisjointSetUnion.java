@@ -26,4 +26,30 @@ public class DisjointSetUnion {
 
         return  parentOrLeader[vertexId];
     }
+
+    public boolean union(int vertexA,int vertexB){
+        int leaderA = find(vertexA);
+        int leaderB = find(vertexB);
+
+        if(leaderA == leaderB){
+            return false;
+        }
+
+        totalDsuOperations++;
+
+        if(treeRank[leaderA] < treeRank[leaderB]){
+            parentOrLeader[leaderA] = leaderB;
+        }
+        else if(treeRank[leaderA] > treeRank[leaderB]){
+            parentOrLeader[leaderB] = leaderA;
+        }
+        else{
+            parentOrLeader[leaderB] = leaderA;
+            treeRank[leaderA]++;
+        }
+
+        componentCount--;
+
+        return true;
+    }
 }
