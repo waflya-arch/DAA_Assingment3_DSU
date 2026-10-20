@@ -52,4 +52,8 @@ public class DisjointSetUnion {
 
         return true;
     }
+
+    public int components(){
+        return componentCount;
+    }
 }
