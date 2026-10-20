@@ -14,4 +14,16 @@ public class DisjointSetUnion {
             treeRank[vertexId] = 0;
         }
     }
+
+    public int find(int vertexId){
+        totalDsuOperations++;
+
+        if(parentOrLeader[vertexId] == vertexId){
+            return vertexId;
+        }
+
+        parentOrLeader[vertexId] = find(parentOrLeader[vertexId]);
+
+        return  parentOrLeader[vertexId];
+    }
 }
