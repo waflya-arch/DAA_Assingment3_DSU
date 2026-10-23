@@ -15,7 +15,6 @@ public class Kruskal {
 
         for (int u = 0; u < graph.totalVertices; u++) {
             for (Edge edge : graph.adjacencyList.get(u)) {
-                if (!graph.isDirected && u > edge.destinationVertex) continue;
                 edges.add(new int[]{u, edge.destinationVertex, edge.edgeWeight});
             }
         }
