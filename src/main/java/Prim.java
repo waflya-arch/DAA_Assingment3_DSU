@@ -11,6 +11,8 @@ public class Prim {
     public static Result run(Graph graph) {
         Result result = new Result();
         boolean[] visited = new boolean[graph.totalVertices];
+
+        // Min-Heap: ребра сортируются STRICTLY по возрастанию веса
         PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> {
             result.comparisons++;
             return Integer.compare(a[1], b[1]);
