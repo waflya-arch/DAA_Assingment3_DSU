@@ -15,6 +15,9 @@ public class Kruskal {
 
         for (int u = 0; u < graph.totalVertices; u++) {
             for (Edge edge : graph.adjacencyList.get(u)) {
+                if (!graph.isDirected && u > edge.destinationVertex) {
+                    continue;
+                }
                 edges.add(new int[]{u, edge.destinationVertex, edge.edgeWeight});
             }
         }
@@ -25,6 +28,7 @@ public class Kruskal {
         });
 
         DisjointSetUnion dsu = new DisjointSetUnion(graph.totalVertices);
+        int addedEdges = 0;
 
         for (int[] edge : edges) {
             result.edgeScans++;
@@ -35,6 +39,10 @@ public class Kruskal {
             if (dsu.find(u) != dsu.find(v)) {
                 dsu.union(u, v);
                 result.totalWeight += w;
+                addedEdges++;
+                if (addedEdges == graph.totalVertices - 1) {
+                    break;
+                }
             }
         }
 
